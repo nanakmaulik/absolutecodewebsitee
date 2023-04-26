@@ -1,0 +1,50 @@
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+  https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBQDQ0Ae-CNqeGQK-4v3AxTK180J0QuH3c",
+    authDomain: "courseform-41aa1.firebaseapp.com",
+    databaseURL: "https://courseform-41aa1-default-rtdb.firebaseio.com",
+    projectId: "courseform-41aa1",
+    storageBucket: "courseform-41aa1.appspot.com",
+    messagingSenderId: "1076275804441",
+    appId: "1:1076275804441:web:b2809c6ecf06261c9e6d88",
+    measurementId: "G-8TXD717BDR"
+  };
+  //initializing firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script>
+
+  function login() {
+    var db = firebase.database();
+
+    db.ref("login").once("value", (value) => {
+      var login = value.val();
+
+      var username = prompt("Enter your username");
+
+      if (username != login.id) {
+        alert("Username didn't match");
+        return;
+      }
+
+      var password = prompt("Enter your password");
+      if (password != login.pass) {
+        alert("Password didn't match");
+        return;
+      }
+
+    })
+  }
+
+  fetchOrders();
+  login();
+</script>

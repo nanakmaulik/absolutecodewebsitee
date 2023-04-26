@@ -1,0 +1,92 @@
+<html>
+    <head>
+<title>form</title>
+
+</head>
+<body>
+    <input type="email" placeholder="email" id="email"/>
+    <input type="password" placeholder="password" id="password"/>
+    <button onclick="signUp()" id="signup"> Sign Up</button>
+    <button onclick="signIn()" id="signin"> Sign in</button>
+    <button onclick="signOut()" id="signout"> Sign out</button>
+</body>
+
+<script>// Your web app's Firebase configuration
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { auth } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+  var firebaseConfig = {
+    apiKey: "AIzaSyBQDQ0Ae-CNqeGQK-4v3AxTK180J0QuH3c",
+    authDomain: "courseform-41aa1.firebaseapp.com",
+    databaseURL: "https://courseform-41aa1-default-rtdb.firebaseio.com",
+    projectId: "courseform-41aa1",
+    storageBucket: "courseform-41aa1.appspot.com",
+    messagingSenderId: "1076275804441",
+    appId: "1:1076275804441:web:b2809c6ecf06261c9e6d88",
+    measurementId: "G-8TXD717BDR"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+	const auth = firebase.auth();
+	
+	
+	function signUp(){
+		
+		var email = document.getElementById("email");
+		var password = document.getElementById("password");
+		
+		const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
+		promise.catch(e => alert(e.message));
+		
+		alert("Signed Up");
+	}
+	
+	
+	
+	function signIn(){
+		
+		var email = document.getElementById("email");
+		var password = document.getElementById("password");
+		
+		const promise = auth.signInWithEmailAndPassword(email.value, password.value);
+		promise.catch(e => alert(e.message));
+		
+		
+		
+		
+	}
+	
+	
+	function signOut(){
+		
+		auth.signOut();
+		alert("Signed Out");
+		
+	}
+	
+	
+	
+	auth.onAuthStateChanged(function(user){
+		
+		if(user){
+			
+			var email = user.email;
+			alert("Active User " + email);
+			
+			//Take user to a different or home page
+
+			//is signed in
+			
+		}else{
+			
+			alert("No Active User");
+			//no user is signed in
+		}
+		
+		
+		
+	});
+
+</script>
+	
+</html>
